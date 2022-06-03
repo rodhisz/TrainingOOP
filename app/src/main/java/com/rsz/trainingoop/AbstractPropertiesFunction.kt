@@ -23,20 +23,31 @@ class Cat() : Animal(){
 abstract class Karyawan () {
     abstract val namaKaryawan : String
     abstract val jobKaryawan : String
+    abstract fun sayHello() : String
+    abstract fun sayGoodBye() : String
+
 }
 
-class Software() : Karyawan(){
-    override val namaKaryawan: String
-        get() = "Tio"
-    override val jobKaryawan: String
-        get() = "Software"
+class Software(override val namaKaryawan: String, override val jobKaryawan: String, val umur : Int) : Karyawan(){
+
+    override fun sayHello(): String {
+        return "Halo semuanya saya $namaKaryawan, umur saya $umur dan saya adalah seorang $jobKaryawan"
+    }
+
+    override fun sayGoodBye(): String {
+        return "Saya $namaKaryawan, pekerjaan saya $jobKaryawan, izin pamit"
+    }
 }
 
-class Hardware() : Karyawan(){
-    override val namaKaryawan: String
-        get() = "Humam"
-    override val jobKaryawan: String
-        get() = "Hardware"
+class Hardware(override val namaKaryawan: String, override val jobKaryawan: String) : Karyawan(){
+
+    override fun sayHello(): String {
+        return "Halo semuanya saya $namaKaryawan, saya adalah seorang $jobKaryawan"
+    }
+
+    override fun sayGoodBye(): String {
+        return "Saya $namaKaryawan, pekerjaan saya $jobKaryawan, izin pamit"
+    }
 }
 
 fun main() {
@@ -48,9 +59,13 @@ fun main() {
 
     println("--------------------")
 
-    val software = Software()
-    println("${software.namaKaryawan} adalah seorang ${software.jobKaryawan}")
+    val software = Software("Rizki", "Software Engineer",20)
+    println(software.sayHello())
+    println(software.sayGoodBye())
 
-    val hardware = Hardware()
-    println("${hardware.namaKaryawan} adalah seorang ${hardware.jobKaryawan}")
+    println("--------------------")
+
+    val hardware = Hardware("Bambang", "Hardware Engineer")
+    println(hardware.sayHello())
+    println(hardware.sayGoodBye())
 }
